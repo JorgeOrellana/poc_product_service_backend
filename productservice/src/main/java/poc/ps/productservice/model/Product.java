@@ -1,10 +1,15 @@
 package poc.ps.productservice.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Entity
+@NoArgsConstructor
+@Setter
+@Getter
 @Table(name = "t_product")
 public class Product
 {
@@ -14,4 +19,5 @@ public class Product
     private String name;
     private String description;
     private Double price;
+    private String type;
 }
