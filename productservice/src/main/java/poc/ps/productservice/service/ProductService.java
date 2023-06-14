@@ -8,6 +8,7 @@ import poc.ps.productservice.dto.ProductResponseDTO;
 import poc.ps.productservice.model.Product;
 import poc.ps.productservice.repository.ProductRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,7 +21,6 @@ public class ProductService
     public ProductResponseDTO save(ProductRequestDTO productRequestDTO)
     {
         Product product = new Product();
-        product.setId(5l);
         product.setName(productRequestDTO.getName());
         product.setDescription(productRequestDTO.getDescription());
         product.setPrice(productRequestDTO.getPrice());
@@ -28,5 +28,15 @@ public class ProductService
 
         Product newProduct = productRepository.save(product);
         return new ProductResponseDTO(newProduct);
+    }
+
+    public List<ProductResponseDTO> getAllProducts()
+    {
+        return productRepository.findAll().stream().map(ProductResponseDTO::new).toList();
+    }
+
+    public void deleteProductById(String id)
+    {
+        productRepository.deleteById(Long.parseLong(id));
     }
 }
